@@ -1,0 +1,13 @@
+# create a virtualenv
+mkvirtualenv baselevel
+# create project
+django-admin startproject baselevel
+django-admin startapp sitelog
+
+# edit sitelog model.py
+
+python manage.py makemigrations
+python manage.py migrate  # update database
+
+#edit admin.py to add site log model
+#from .model import sitelog
