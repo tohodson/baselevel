@@ -1,3 +1,14 @@
 from django.shortcuts import render
 
-# Create your views here.
+from .forms import SiteLogForm
+
+from django.http import HttpResponse
+
+
+def index(request):
+    return HttpResponse("Hello, world. You're at the polls index.")
+
+def new_log(request):
+    form = SiteLogForm
+    return render(request, 'sitelog/new.html', {'form': form})
+

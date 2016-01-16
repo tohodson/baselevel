@@ -1,16 +1,29 @@
 from django.db import models
 
 # Create your models here.
-class sitelog(models.Model):
-    stationID = models.IntegerField()
-    siteName = models.CharField(max_length=255)
+class SiteLog(models.Model):
+    #log information
+    notes = models.CharField(max_length=200)
+    personnel = models.CharField(max_length=100,null=True)
+    visit_date = models.DateTimeField('date published')
 
-    water = models.CharField(max_length=255)
-    debris = models.CharField(max_length=255)
+    #stage information
+    tape_down = models.FloatField(null=True, blank=True)
+    logger_stage = models.FloatField(null=True, blank=True)
+
+    battery_voltage = models.FloatField(null=True, blank=True)
+    samples_taken = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.visit_date
 
 
-    comments = models.TextField(null=True)
-    tape_Down = models.DecimalField(max_digits=6, decimal_places=3)
-    stage = models.DecimalField(max_digits=6, decimal_places=3)
-    #image = models.ImageField()
-    #timeIn = models.DateTimeField(defualt=now)
+class Sample(models.Model):
+    sitelog = models.ForeignKey(SiteLog, on_delete=models.CASCADE)
+    sample_date = models.DateTimeField('collection date')
+    comment_text = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.sample_date
+
+
