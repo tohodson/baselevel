@@ -1,0 +1,11 @@
+{% extends 'sitelog/base.html' %}
+
+{% block content %}
+    <h1>Site Logs</h1>
+    {% for log in logs %}
+
+        {{ log }}
+
+    {% endfor %}
+
+{% endblock %}
