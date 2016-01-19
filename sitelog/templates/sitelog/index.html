@@ -1,0 +1,13 @@
+{% extends 'sitelog/base.html' %}
+
+{% block content %}
+{% if latest_log_list %}
+    <ul>
+    {% for sitelog in latest_log_list %}
+        <li><a href="/sitelog/{{ sitelog.id }}/">{{ sitelog.visit_date}}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No sitelogs are available.</p>
+{% endif %}
+{% endblock %}
