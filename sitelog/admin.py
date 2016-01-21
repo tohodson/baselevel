@@ -9,14 +9,10 @@ admin.site.register(Sample)
 admin.site.register(Site)
 
 class SamplesInline(admin.TabularInline):
-    # fields = ('name','')
+    fields = ['sample_date','comment_text']
     model = Sample
-    extra = 24
+    extra = 12
 
-    def view_station_id(self, obj):
-        return obj.station_id
-
-    #view_station_id.
 
 class SiteLogAdmin(admin.ModelAdmin):
     inlines = [SamplesInline]
