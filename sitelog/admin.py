@@ -9,15 +9,17 @@ admin.site.register(Sample)
 admin.site.register(Site)
 
 class SamplesInline(admin.TabularInline):
-    fields = ['sample_date','comment_text']
-    model = Sample
-    extra = 12
+
+    fields          = ['site','sample_date','comment_text']
+    model           = Sample
+    extra           = 24
 
 
 class SiteLogAdmin(admin.ModelAdmin):
-    inlines = [SamplesInline]
-    list_filter = ['visit_date','station__site_id']
-    #list_filter = ('visit_date','station')
+
+    inlines         = [SamplesInline]
+    list_filter     = ['visit_date','station__site_id']
+
 
 admin.site.register(SiteLog, SiteLogAdmin)
 
