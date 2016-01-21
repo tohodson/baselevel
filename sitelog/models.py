@@ -2,37 +2,50 @@ from django.db import models
 from django.utils import timezone
 
 # Create your models here.
+
+#class Personnel
+#    first_name        =
+#    last_name         =
+#    initials          =
+#    start_date        =
+#    end_date          =
+#    cell_phone        =
+#    work_phone        =
+#    email             =
+
+
 class Site( models.Model ):
 
     site_id           = models.IntegerField(blank=False)
+    site_name         = models.CharField(max_length=100)
     waterbody_name    = models.CharField(max_length=100, blank=True)
     parent_waterbody  = models.CharField(max_length=100, blank=True)
     isws_station_code = models.CharField(max_length=100, blank=True)
 
     county            = models.CharField(max_length=100, blank=True)
-    start             = models.DateTimeField(default=timezone.now)
-    end               = models.DateTimeField(blank=True)
+    start             = models.DateTimeField(default=timezone.now, null=True)
+    end               = models.DateTimeField(null=True, blank=True)
     road              = models.CharField(max_length=100, blank=True)
 
-    longitude         = models.DecimalField(decimal_places=8, max_digits=11, blank=True)
-    latitude          = models.DecimalField(decimal_places=8, max_digits=11, blank=True)
+    longitude         = models.DecimalField(decimal_places=8, max_digits=11, null=True, blank=True)
+    latitude          = models.DecimalField(decimal_places=8, max_digits=11, null=True, blank=True)
 
 
     nearest_town      = models.CharField(max_length=100, blank=True)
     modem_name        = models.CharField(max_length=100, blank=True)
 
-    zipcode           = models.IntegerField(blank=True)
-    modem_sn          = models.BigIntegerField(blank=True)
+    zipcode           = models.IntegerField(null=True, blank=True)
+    modem_sn          = models.BigIntegerField(null=True, blank=True)
     ip_number         = models.CharField(max_length=100, blank=True)
     land_owner        = models.CharField(max_length=100, blank=True)
 
-    rp_elevation      = models.DecimalField(decimal_places=3, max_digits=6, blank=True)
-    box_rp_elevation  = models.DecimalField(decimal_places=3, max_digits=6, blank=True)
-    d2w               = models.DecimalField(decimal_places=3, max_digits=6, blank=True)    # distance to water
-    offset            = models.DecimalField(decimal_places=3, max_digits=6, blank=True)
+    rp_elevation      = models.DecimalField(decimal_places=3, max_digits=6, null=True,  blank=True)
+    box_rp_elevation  = models.DecimalField(decimal_places=3, max_digits=6, null=True,  blank=True)
+    d2w               = models.DecimalField(decimal_places=3, max_digits=6, null=True,  blank=True)    # distance to water
+    offset            = models.DecimalField(decimal_places=3, max_digits=6, null=True,  blank=True)
 
     def __str__(self):
-        return str(self.site_id)
+        return str(self.site_id) + ': ' + self.site_name
 
 
 class SiteLog( models.Model ):
