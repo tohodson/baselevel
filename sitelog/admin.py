@@ -5,15 +5,19 @@ from django.contrib import admin
 #
 from .models import SiteLog, Sample, Site
 
-admin.site.register(Sample)
 admin.site.register(Site)
 
 class SamplesInline(admin.TabularInline):
 
-    fields          = ['site','sample_date','comment_text']
     model           = Sample
+    fields          = ['sample_date','comment_text']
     extra           = 24
 
+class SampleAdmin(admin.ModelAdmin):
+    #list_filter     = ['sitelog']
+    list_filter     = ['sample_date','sitelog','sitelog__station_id__site_id']
+
+admin.site.register(Sample, SampleAdmin)
 
 class SiteLogAdmin(admin.ModelAdmin):
 
@@ -36,3 +40,4 @@ class SiteResource(resources.ModelResource):
 
     class Meta:
         model = Site
+

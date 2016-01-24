@@ -65,16 +65,21 @@ class SiteLog( models.Model ):
     samples_taken     = models.IntegerField(default=0)
 
     def __str__(self):
+        #return str(self.station.site_id) + ': ' + str(self.visit_date)
         return str(self.visit_date)
 
 
 class Sample(models.Model):
     sitelog           = models.ForeignKey(SiteLog, on_delete=models.CASCADE)
-    site              = models.ForeignKey(Site, on_delete=models.CASCADE)
     sample_date       = models.DateTimeField('collection date')
     comment_text      = models.CharField(max_length=200)
 
     def __str__(self):
         return str(self.sample_date)
-
+    # XXX
+    @property
+    def getSite(self):
+        return self.sitelog.station
+    #urlparse.urlparse(self.url).hostname
+    ##
 
