@@ -15,8 +15,8 @@ from django.utils import timezone
 
 
 class Site( models.Model ):
-
-    site_id           = models.IntegerField(blank=False)
+    #site_id           = models.IntegerField(Foreign
+    site_id          = models.IntegerField(blank=False) #XXX set as foreign key
     site_name         = models.CharField(max_length=100)
     waterbody_name    = models.CharField(max_length=100, blank=True)
     parent_waterbody  = models.CharField(max_length=100, blank=True)
@@ -49,7 +49,7 @@ class Site( models.Model ):
 
 
 class SiteLog( models.Model ):
-
+    """ Sitelog object contains information recorded during a technician's site visit."""
     # log information
     personnel         = models.ForeignKey('auth.User')
     station           = models.ForeignKey(Site)
