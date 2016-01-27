@@ -15,7 +15,8 @@ class SamplesInline(admin.TabularInline):
 
 class SampleAdmin(admin.ModelAdmin):
     #list_filter     = ['sitelog']
-    list_filter     = ['sample_date','sitelog','sitelog__station_id__site_id']
+    #list_filter     = ['sample_date','sitelog','sitelog__station_id__site_id']
+    list_filter     = ['sample_date','sitelog','sitelog__station_id']
 
 admin.site.register(Sample, SampleAdmin)
 
