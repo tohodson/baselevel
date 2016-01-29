@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'import_export',
     'stagerecord',
-    'sitelog.apps.SitelogConfig',
+    'sitelog',
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
